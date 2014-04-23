@@ -24,13 +24,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ## This function inputs the list that is created in makeCacheMatrix
 
 cacheSolve <- function(x, ...) {
-  m <- x$getInverse()           #query the x vector's cache         
-  if(!is.null(m)) {           #if there is a cache
+  m <- x$getInverse()           #assigns the inverse of x if it has been calculated already        
+  if(!is.null(m)) {           #if it exists
     message("getting cached data") 
-    return(m)                #just return the cache, no computation needed
+    return(m)                #returns the inverse value
   }
   data <- x$get()             #if there's no cache
-  m <- solve(data, ...)        #we actually compute them here
-  x$setInverse()                #save the result back to x's cache
+  m <- solve(data, ...)        #compute here
+  x$setInverse()                #save the result
   m                           #return the result
 }
